@@ -1,6 +1,6 @@
 import Cylinder from './Components/Cylinder';
 import { Canvas } from '@react-three/fiber';
-import { softShadows } from '@react-three/drei';
+import { softShadows, OrbitControls } from '@react-three/drei';
 import './App.scss';
 
 softShadows();
@@ -39,6 +39,7 @@ function App() {
           </mesh>
         </group>
         <Cylinder position={[0, 1, 0]} args={[2, 2, 6, 40, 4, false]} color='pink' />
+        <OrbitControls />
       </Canvas>
     </>
   );
