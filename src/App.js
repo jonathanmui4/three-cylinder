@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useGlobalState } from './state';
 import Cylinder from './Components/Cylinder';
+import BlueButton from './Components/BlueButton';
+import PinkButton from './Components/PinkButton';
 import { Canvas } from '@react-three/fiber';
 import { softShadows, OrbitControls } from '@react-three/drei';
 import './App.scss';
@@ -7,11 +9,8 @@ import './App.scss';
 softShadows();
 
 function App() {
-
-  const [color, setColor] = useState("pink");
-
-  const switchToBlue = () => setColor("aqua");
-  const switchToPink = () => setColor("pink");
+  const [color] = useGlobalState("color");
+  console.log(color);
 
   return (
     <>
@@ -50,7 +49,7 @@ function App() {
       </Canvas>
       <div className='btndiv'>
         <div></div>
-        {color === "pink" ? <button type="button" onClick={switchToBlue} className='btnblue'>Switch to Turqoise</button> : <button type="button" onClick={switchToPink} className='btnpink'>Switch to Pink</button>}
+        {color === "pink" ? <BlueButton/> : <PinkButton/>}
         <div></div>
       </div>
     </>
