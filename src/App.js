@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Cylinder from './Components/Cylinder';
 import { Canvas } from '@react-three/fiber';
 import { softShadows, OrbitControls } from '@react-three/drei';
@@ -6,6 +7,12 @@ import './App.scss';
 softShadows();
 
 function App() {
+
+  const [color, setColor] = useState("pink");
+
+  const switchToBlue = () => setColor("aqua");
+  const switchToPink = () => setColor("pink");
+
   return (
     <>
       <Canvas 
@@ -38,9 +45,14 @@ function App() {
             <shadowMaterial attach="material" opacity={0.3} />
           </mesh>
         </group>
-        <Cylinder position={[0, 1, 0]} args={[2, 2, 6, 40, 4, false]} color='pink' />
+        <Cylinder position={[0, 1, 0]} args={[2, 2, 6, 40, 4, false]} color={color} />
         <OrbitControls />
       </Canvas>
+      <div className='btndiv'>
+        <div></div>
+        {color === "pink" ? <button type="button" onClick={switchToBlue} className='btnblue'>Switch to Turqoise</button> : <button type="button" onClick={switchToPink} className='btnpink'>Switch to Pink</button>}
+        <div></div>
+      </div>
     </>
   );
 }
